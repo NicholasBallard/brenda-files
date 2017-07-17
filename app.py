@@ -1,6 +1,7 @@
 import os, shutil, pprint
 
-os.chdir(r'c:\users\nicholasericballard\desktop')
+WORKING_DIRECTORY = r'c:\users\nicholasericballard\desktop'
+os.chdir( WORKING_DIRECTORY )
 
 # copy directory to working directory
 try:
