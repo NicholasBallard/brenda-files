@@ -50,5 +50,12 @@ for folder in range(len(shortened_folder_names)):
     os.makedirs(shortened_folder_names[folder], exist_ok=True)
 
 # COPY FILES INTO SHORTENED DIRPATH
-for file in range(len(absolute_file_paths)):
-    shutil.copy2( absolute_file_paths[file] , shortened_file_paths[file] )
+# for file in range(len(absolute_file_paths)):
+#     shutil.copy2( absolute_file_paths[file] , shortened_file_paths[file] )
+
+# counts longest absolute path
+longest_file = 0
+for file in shortened_file_paths:
+    if len(file) > longest_file:
+        longest_file = len(file)
+print('The longest file is a total of {} characters in length.'.format(len(WORKING_DIRECTORY) + longest_file))
