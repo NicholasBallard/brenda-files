@@ -1,11 +1,15 @@
 import os, shutil, pprint
 
 WORKING_DIRECTORY = r'c:\users\nicholasericballard\desktop'
+NAME_OF_FOLDER_WE_ARE_WORKING_ON = '2017'
+DIRECTORY_NAME_OF_COPY = 'workThisDirectory'
+NUMBER_OF_CHARACTERS_TO_KEEP_IN_EACH_FOLDER_NAME = 5
+
 os.chdir( WORKING_DIRECTORY )
 
 # copy directory to working directory
 try:
-    shutil.copytree('2017', 'workThisDirectory')
+    shutil.copytree(NAME_OF_FOLDER_WE_ARE_WORKING_ON, DIRECTORY_NAME_OF_COPY)
 except FileExistsError:
     print("The folder already exists.")
 
@@ -15,8 +19,7 @@ absolute_file_paths = list()
 shortened_file_paths = list()
 
 # THE ORIGINAL DIRPATH
-# TODO: refactor 'workThisDirectory' to be a constant
-for dirpath, directories, files in os.walk('workThisDirectory'):
+for dirpath, directories, files in os.walk(DIRECTORY_NAME_OF_COPY):
     for file in files:
         original_folder_names.append( dirpath )
 
@@ -29,14 +32,14 @@ for dirpath in range(len(shortened_folder_names)):
     # change root
     shortened_folder_names[dirpath][0] = 'newWorkThisDirectory'
     for folder in range(1, len(shortened_folder_names[dirpath])):
-        # TODO: replace [:5] with a constant at the top
-        shortened_folder_names[dirpath][folder] = shortened_folder_names[dirpath][folder][:5].rstrip()
+        # the number of characters to remain in the shortened folder names
+        shortened_folder_names[dirpath][folder] = shortened_folder_names[dirpath][folder][:NUMBER_OF_CHARACTERS_TO_KEEP_IN_EACH_FOLDER_NAME].rstrip()
 # stitch the dirpaths back together
 for dirpath in range(len(shortened_folder_names)):
     shortened_folder_names[dirpath] = '\\'.join(map(str, shortened_folder_names[dirpath]))
 
 # THE ORIGINAL FULL FILEPATH
-for dirpath, directories, files in os.walk('workThisDirectory'):
+for dirpath, directories, files in os.walk(DIRECTORY_NAME_OF_COPY):
     for file in files:
         absolute_file_paths.append(os.path.join(dirpath, file))
 
@@ -50,12 +53,19 @@ for folder in range(len(shortened_folder_names)):
     os.makedirs(shortened_folder_names[folder], exist_ok=True)
 
 # COPY FILES INTO SHORTENED DIRPATH
-# for file in range(len(absolute_file_paths)):
-#     shutil.copy2( absolute_file_paths[file] , shortened_file_paths[file] )
+for file in range(len(absolute_file_paths)):
+    shutil.copy2( absolute_file_paths[file] , shortened_file_paths[file] )
+
+# counts original folder's longest absolute path
+old_longest_file = 0
+for file in absolute_file_paths:
+    if len(file) > old_longest_file:
+        old_longest_file = len(file)
 
 # counts longest absolute path
-longest_file = 0
+new_longest_file = 0
 for file in shortened_file_paths:
-    if len(file) > longest_file:
-        longest_file = len(file)
-print('The longest file is a total of {} characters in length.'.format(len(WORKING_DIRECTORY) + longest_file))
+    if len(file) > new_longest_file:
+        new_longest_file = len(file)
+
+print('The longest file is a total of {} characters in length.\nBefore, the longest file path (in the original folder) is {} characters in length.'.format(len(WORKING_DIRECTORY) + new_longest_file , len(WORKING_DIRECTORY) + old_longest_file))

@@ -9,3 +9,11 @@ Example:
 Becomes:
 
 "Z:\main_\anoth\Russi\yadda\investment board report.xlsx"
+
+In the terminal output when done, the program prints the new longest directory length versus the longest directory length of the original folder.
+
+Steps:
+
+1 ==>> Make sure to work on a copy of the folder, not the original! Just in case...
+
+2 ==>> Set the working directory for Brenda's computer. Copy the Z:\\ ("the Z Drive") to the desktop. The program will make yet another copy of this folder just in case, and work off that.
