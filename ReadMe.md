@@ -12,17 +12,17 @@ Becomes:
 
 In the terminal output when done, the program prints the new longest directory length versus the longest directory length of the original folder.
 
-'''\n
-Terminal:\n
-The longest file is a total of 57 characters in length.\n
-Before, the longest file path (in the original folder) is 90 characters in length.\n
+'''
+Terminal:
+The longest file is a total of 57 characters in length.
+Before, the longest file path (in the original folder) is 90 characters in length.
 '''
 
 If the copy of the directory is already made by running this script before, the try loop will print a message saying the directory already exists and will skip re-creating the folder, and continue running the rest of the script.
 
-'''\n
-Terminal:\n
-The fodler already exists.\n
+'''
+Terminal:
+The fodler already exists.
 '''
 
 Steps:
