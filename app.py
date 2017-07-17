@@ -1,9 +1,9 @@
 import os, shutil, pprint
 
-WORKING_DIRECTORY = r'c:\users\nicholasericballard\desktop'
-NAME_OF_FOLDER_WE_ARE_WORKING_ON = '2017'
-DIRECTORY_NAME_OF_COPY = 'workThisDirectory'
-NUMBER_OF_CHARACTERS_TO_KEEP_IN_EACH_FOLDER_NAME = 5
+WORKING_DIRECTORY                                   = r'c:\users\nicholasericballard\desktop'
+NAME_OF_FOLDER_WE_ARE_WORKING_ON                    = '2017'
+DIRECTORY_NAME_OF_COPY                              = 'workThisDirectory'
+NUMBER_OF_CHARACTERS_TO_KEEP_IN_EACH_FOLDER_NAME    = 5
 
 os.chdir( WORKING_DIRECTORY )
 
@@ -30,7 +30,7 @@ for dirpath in range(len(shortened_folder_names)):
 # shorten the folder names but leave the root alone
 for dirpath in range(len(shortened_folder_names)):
     # change root
-    shortened_folder_names[dirpath][0] = 'newWorkThisDirectory'
+    shortened_folder_names[dirpath][0] = DIRECTORY_NAME_OF_COPY
     for folder in range(1, len(shortened_folder_names[dirpath])):
         # the number of characters to remain in the shortened folder names
         shortened_folder_names[dirpath][folder] = shortened_folder_names[dirpath][folder][:NUMBER_OF_CHARACTERS_TO_KEEP_IN_EACH_FOLDER_NAME].rstrip()
